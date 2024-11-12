@@ -1,0 +1,240 @@
+
+.Showproduct {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    padding: 0px;
+    margin-top: 30px;
+    /* border: 1px solid #000; */
+  }
+  
+  .product-card {
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    text-align: left;
+    height: 300px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-card img {
+    width: 100%;
+    height: 70%;
+  }
+  
+  
+  
+  .product-card p {
+    position: absolute;
+    color: #666;
+  }
+  .product-card  .price{
+    left: 5px;
+    bottom: 5px;
+    color: orange;
+    font-weight: 600;
+  }
+  .product-card  .menuname{
+    left: 5px;
+    font-weight: 600;
+
+  }
+  .product-card  .detail{
+    position: absolute;
+    width: 100%; /* ขนาดความกว้างที่ต้องการ */
+    white-space: nowrap; /* ไม่ให้ขึ้นบรรทัดใหม่ */
+    overflow: hidden; /* ซ่อนข้อความที่เกินขนาด */
+    text-overflow: ellipsis; /* เพิ่ม ... เมื่อข้อความเกิน */
+    bottom: 25px;
+    left: 5px;
+    font-size: 14px;
+  }
+  .product-card  .promotion{
+    top: 5px;
+    right: 5px;
+    color: rgb(255, 207, 64);
+    background: rgb(255, 255, 255);
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: 600;
+  }
+  .product-card:hover{
+    scale: 1.1;
+    transition: .5s;
+    
+  }
+
+  .Showproduct .popup {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .Showproduct .popup > .item{
+    width: 40%;
+    background-color: #fff;
+    height: 500px;
+  }
+  
+  .Showproduct .popup-content {
+    position: relative;
+    padding: 20px;
+    border-radius: 10px 0px 0px 10px ;
+    text-align: center;
+    overflow: hidden;
+  }
+  .Showproduct .detailpro{
+    position: relative;
+    border-radius: 0px 10px 10px 0px;
+    padding: 35px 10px 10px 10px;
+  }
+  .Showproduct .detailpro .close{
+    position: absolute;
+    scale: 0.7;
+    right: 0px;
+    top: 0px;
+    padding: 2px;
+    width: auto;
+    height: auto;
+    font-size: 25px;
+    box-shadow: 1px 2px 5px #a4a4a4;
+    border-radius: 10px;
+
+  }
+  .Showproduct .detailpro .close:hover{
+    background: rgb(255, 121, 121);
+    transition: .5s;
+  }
+
+  .Showproduct .popup-content .action{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    gap: 15px;
+  }
+  .Showproduct .popup-content .action button{
+    width: 45%;
+    height: 40px;
+    box-shadow: 1px 2px 5px #cfcfcf;
+    margin: 0px;
+    font-weight: 900;
+   
+  }
+  .Showproduct .popup-content .action .cart{
+    background: white;
+    color: #666;
+  }
+
+  .Showproduct .popup-content .action .buy{
+    background: rgb(255, 207, 64);
+    color: #ffffff;
+  }
+  
+  /* .Showforyou .DetailSetpro .close {
+    background: rgb(255, 255, 255);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+  } */
+
+  .Showproduct .popup-content .datapro{
+    padding-top: 10px;
+    display: flex;
+ 
+  }
+  .Showproduct .popup-content .datapro .item{
+    width: 50%;
+    
+    
+  }
+  .Showproduct .popup-content .datapro .item .price{
+    color: orange;
+    font-size: 25px;
+    font-weight: 900;
+    
+  }
+  .Showproduct .popup-content .datapro .item:first-child{
+
+    text-align: left;
+    
+    
+  }
+  .Showproduct .popup-content .datapro .item:last-child{
+    text-align: right;
+    
+    
+  }
+
+  .Showproduct .popup-content .gridlayer{
+    display: flex;
+
+  }
+  .Showproduct .popup-content .gridlayer > img {
+    width: 50%;
+    height: 230px;
+  }
+
+  .Showproduct .popup-content .gridlayer  .img-item{
+
+    height: 230px;
+   
+    
+  }
+  .Showproduct .popup-content .gridlayer  .img-item img{
+    width: 100%;
+    height: 110px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 5px;
+  }
+  @media (max-width: 450px) {
+    .Showproduct {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      padding: 0px;
+      margin-top: 10px;
+      /* border: 1px solid #000; */
+    }
+    
+    .Showproduct .popup > .item{
+      width: 100%;
+      height: auto;
+      background-color: #fff;
+      border-radius: 0px;
+      box-shadow: none;
+      
+    }
+    .Showproduct .detailpro{
+      padding: 20px;
+    
+    }
+    .Showproduct .detailpro > .close{
+      position: fixed;
+      scale: 0.7;
+      top: 0px;
+      left: -50px;
+      padding: 2px;
+      height: auto;
+      font-size: 25px;
+      border-radius: 10px;
+      box-shadow: none;
+
+  
+    }
+    
+   
+}
+
