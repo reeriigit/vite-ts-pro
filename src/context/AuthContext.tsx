@@ -1,63 +1,57 @@
 // src/context/AuthContext.tsx
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
-import { Token, DataUserContext } from '../models/UserModel';
+import Cookies from 'js-cookie';
+import { DataUserContext,DataStoreContext } from '../models/UserModel';
 import { fetchUser } from '@/services/usersService';
+import { fetchUserStores } from '@/services/storeService';
 
 interface AuthContextType {
-  token: Token | null;
-  login: (token: Token) => void;
+  login: () => void;
   logout: () => void;
   UserContext: DataUserContext | null;
   setUserContext: React.Dispatch<React.SetStateAction<DataUserContext | null>>;
+  StoreContext: DataStoreContext | null;
+  setStoreContext: React.Dispatch<React.SetStateAction<DataStoreContext | null>>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [token, setToken] = useState<Token | null>(() => {
-    try {
-      const storedUser = localStorage.getItem('userToken');
-      return storedUser ? JSON.parse(storedUser) : null;
-    } catch (error) {
-      console.error("Failed to parse user from localStorage:", error);
-      return null;
-    }
-  });
-
   const [UserContext, setUserContext] = useState<DataUserContext | null>(null);
+  const [StoreContext, setStoreContext] = useState<DataStoreContext | null>(null);
 
-  // Update UserContext when token changes
   useEffect(() => {
-    // Only fetch data if UserContext is null and token is available
     const loadUserData = async () => {
-      if (token && !UserContext) {
+      console.log("ovsndpvundpi")
+      if (!UserContext) {
         try {
-          const userDatas = await fetchUser(token);
+          const userDatas = await fetchUser();
+          const storeDatas = await fetchUserStores();
           setUserContext(userDatas);
+          setStoreContext(storeDatas)
           console.log("Fetched user data:", userDatas);
+          console.log("Fetched user data:", storeDatas);
         } catch (error) {
           console.error("Failed to fetch user data:", error);
-          setUserContext(null); // Reset UserContext on error
+          setUserContext(null);
         }
       }
     };
     loadUserData();
-  }, [token]); // Remove UserContext from the dependency array
-  
+  }, []);
 
-  const login = (token: Token) => {
-    setToken(token);
-    localStorage.setItem('userToken', JSON.stringify(token));
+  const login = () => {
+    console.log('Logged in successfully');
   };
 
   const logout = () => {
-    setToken(null);
-    setUserContext(null); // Reset UserContext on logout
-    localStorage.removeItem('userToken');
+    setUserContext(null);
+    Cookies.remove('token'); // Remove token from cookies on logout
+    console.log('Logged out and token removed from cookies');
   };
 
   return (
-    <AuthContext.Provider value={{ token, login, logout, UserContext, setUserContext }}>
+    <AuthContext.Provider value={{ login, logout, UserContext, setUserContext,StoreContext,setStoreContext }}>
       {children}
     </AuthContext.Provider>
   );

@@ -7,6 +7,11 @@ import About from '../views/About';
 import DisplayUsers from '../views/DisplayUsers';
 import SomeComponent from '../views/SomeComponent';
 import Sidebar from '../components/shop/Sidebar'; // นำเข้า Sidebar
+import StoresList from '@/views/shop/Store/StoresList';
+import UpdateStore from '@/views/shop/Store/UpdateStore';
+import StoreForm from '@/views/shop/Store/StoreForm';
+import ProductTypeForm from '@/views/shop/ProductType/ProductTypeForm';
+
 
 
 const ShopRoutes: React.FC = () => {
@@ -23,6 +28,10 @@ const ShopRoutes: React.FC = () => {
           <Route path="about" element={<About />} />
           <Route path="display-users" element={<DisplayUsers />} />
           <Route path="somecomponent" element={<SomeComponent />} />
+          <Route path="storelist" element={<StoresList/>} />
+          <Route path="updatestore" element={<UpdateStore/>} />
+          <Route path="storeForm" element={<StoreForm/>} />
+          <Route path="productTypeForm" element={<ProductTypeForm/>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>

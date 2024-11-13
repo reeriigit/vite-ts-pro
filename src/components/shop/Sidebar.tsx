@@ -15,15 +15,16 @@ const Sidebar: React.FC = () => {
           </Link>
         </li>
         <li className="p-4 hover:bg-gray-700 rounded-md">
-          <Link to="/shop/user-form" className="block">
-            User Form
-          </Link>
-        </li>
-        <li className="p-4 hover:bg-gray-700 rounded-md">
           <Link to="/shop/display-users" className="block">
             Display Users
           </Link>
         </li>
+        <li className="p-4 hover:bg-gray-700 rounded-md">
+          <Link to="/shop/updatestore" className="block">
+            Update Users
+          </Link>
+        </li>
+        
     
         
       </ul>

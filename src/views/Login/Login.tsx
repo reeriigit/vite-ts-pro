@@ -6,12 +6,9 @@ import { useAuth } from '../../context/AuthContext';
 import './Login.css';
 
 const Login: React.FC = () => {
-  const [formData, setFormData] = useState<{ email: string; password: string }>({
-    email: '',
-    password: '',
-  });
+  const [formData, setFormData] = useState<{ email: string; password: string }>({ email: '', password: '' });
   const navigate = useNavigate();
-  const { login } = useAuth(); // เรียกใช้ hook จาก AuthContext
+  const { login } = useAuth();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -22,13 +19,10 @@ const Login: React.FC = () => {
     e.preventDefault();
     try {
       const result = await handleLogin(formData);
-      console.log("check data user login ",result)
-
       if (result.success) {
-        console.log('Login successful:', result.message);
-        login(result.token); // เรียกใช้ฟังก์ชัน login จาก context เพื่อจัดเก็บข้อมูลผู้ใช้ใน context
+        login(); // Only trigger login to update context
         alert('Login successful!');
-        navigate('/'); // ไปหน้า Home หลังจากล็อกอินสำเร็จ
+        navigate('/'); // Redirect to home
       } else {
         alert('Invalid email or password');
       }
@@ -37,7 +31,6 @@ const Login: React.FC = () => {
       alert('Login failed. Please try again.');
     }
   };
-
 
   return (
     <div className="max-w-md mx-auto p-6 bg-white shadow-md rounded-lg mt-10">

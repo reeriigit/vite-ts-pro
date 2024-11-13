@@ -6,6 +6,7 @@ export const loginUser = async (credentials: UserAuth) => {
   console.log("Data before sending at authService:", credentials);
   try {
     const response = await axios.post(`/api/login`, credentials);
+    console.log("api login", response.data  )
     return response.data;
   } catch (error) {
     console.error('Error in loginUser service:', error);

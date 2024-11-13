@@ -21,3 +21,9 @@ export interface DataUserContext {
   email: string;
   usertype_id?: number;
 }
+export interface DataStoreContext {
+  storeId: number;              // เปลี่ยน Int เป็น number
+  logo?: string;                // เปลี่ยน String? เป็น string?
+  storeName: string;            // เปลี่ยน String เป็น string
+  status: number;               // เปลี่ยน Int เป็น number
+}

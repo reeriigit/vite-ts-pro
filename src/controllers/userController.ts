@@ -3,12 +3,13 @@ import { DataUserContext } from '../models/UserModel';
 import { fetchUser } from '../services/usersService';
 import { addUser } from '@/services/usersService';
 
+// src/controllers/userController.ts
 
 
-
-export const getUser = async (token: string): Promise<DataUserContext | null> => {
-  return await fetchUser(token); // Pass the token to fetchUser
+export const getUser = async (): Promise<DataUserContext | null> => {
+  return await fetchUser();
 };
+
 
 export const handleAddUser = async (userData: {
   referral_code: string;

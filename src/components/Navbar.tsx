@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 const Navbar: React.FC = () => {
-  const { token, logout } = useAuth(); // ใช้ logout และ token จาก useAuth โดยตรง
+  const {  logout } = useAuth(); // ใช้ logout และ token จาก useAuth โดยตรง
 
   return (
     <nav className="border-b-4 border-yellow-500 text-gray-500">
@@ -35,7 +35,9 @@ const Navbar: React.FC = () => {
               Shop
             </Link>
           </li>
-          {token ? (
+        
+      
+          {/* {  (
             <li>
               <button
                 onClick={logout}
@@ -50,7 +52,7 @@ const Navbar: React.FC = () => {
                 Login
               </Link>
             </li>
-          )}
+          )} */}
         </ul>
       </div>
     </nav>

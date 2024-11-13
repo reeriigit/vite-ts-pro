@@ -2,21 +2,20 @@
 import axios from 'axios';
 import { DataUserContext } from '@/models/UserModel';
 
+// src/services/usersService.ts
 
-export const fetchUser = async (token: string): Promise<DataUserContext | null> => {
 
+
+export const fetchUser = async (): Promise<DataUserContext | null> => {
   try {
     const response = await axios.get('/api/users/data', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      withCredentials: true, // Ensures cookies are sent with the request
     });
-  
+
     console.log("Fetched user data:", response.data.data);
 
-
     if (response.data.success) {
-      return response.data.data; // Returning specific user data
+      return response.data.data;
     } else {
       console.error('Unexpected response format:', response.data);
       return null;
@@ -40,8 +39,9 @@ export const addUser = async (userData: {
   usertype_id: number;
 }) => {
   try {
-    // ใช้เส้นทาง `/api/users/data` ให้ตรงกับ fetchUser
-    const response = await axios.post('/api/users/create', userData);
+    const response = await axios.post('/api/users/create', userData, {
+      withCredentials: true, // Include withCredentials here if needed
+    });
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
